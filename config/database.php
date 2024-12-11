@@ -29,6 +29,11 @@ return [
     |
     */
 
+    'options' => [
+    PDO::MYSQL_ATTR_SSL_CA => 'C:\Users\HP EliteBook 840 G6\OneDrive\Documents\GitHub\ca.pem',
+],
+
+
     'connections' => [
 
         'sqlite' => [
@@ -83,19 +88,19 @@ return [
         ],
 
         'pgsql' => [
-            'driver' => 'pgsql',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => env('DB_CHARSET', 'utf8'),
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'search_path' => 'public',
-            'sslmode' => 'prefer',
-        ],
+    'driver' => 'pgsql',
+    'host' => env('DB_HOST', '127.0.0.1'),
+    'port' => env('DB_PORT', '5432'),
+    'database' => env('DB_DATABASE', 'forge'),
+    'username' => env('DB_USERNAME', 'forge'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+    'schema' => 'public',
+    'sslmode' => 'require',  // Ensure this is added for secure connection
+],
+
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
