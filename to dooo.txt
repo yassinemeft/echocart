@@ -1,0 +1,6 @@
+Home (home.blade.php)
+Search (search.blade.php)
+Product details (product.blade.php)
+Cart (cart.blade.php)
+Checkout (checkout.blade.php)
+About Us (about.blade.php)
