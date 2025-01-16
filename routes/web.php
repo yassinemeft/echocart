@@ -14,3 +14,10 @@ Route::resource('products', ProductController::class);
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+
+Route::resource('products', ProductController::class);
+
+Route::get('/', function () {
+    return view('sign');
+})->name('sign');
