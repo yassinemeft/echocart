@@ -18,6 +18,6 @@ Route::get('/', function () {
 
 Route::resource('products', ProductController::class);
 
-Route::get('/', function () {
+Route::get('/sign', function () {
     return view('sign');
 })->name('sign');
