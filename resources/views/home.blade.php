@@ -13,7 +13,7 @@
         <div class="text-dark">
           <h1 class="display-3 mb-3">Welcome to EchoCart</h1>
           <h4 class="mb-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+            Lorem ipsum dolor amet consectetur adipisicing elit. Quisquam, quod.
           </h4>
           <a data-mdb-ripple-init class="btn btn-outline-dark btn-lg m-2" href="https://www.youtube.com/watch?v=c9B4TPnak1A"
             role="button" rel="nofollow" target="_blank">Explore our Products</a>
