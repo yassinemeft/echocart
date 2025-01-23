@@ -33,7 +33,7 @@
             <div class="col-md-5">
                 <div class="form-container">
                     <h3 class="text-center">Sign Up</h3>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('sign') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Full Name</label>
