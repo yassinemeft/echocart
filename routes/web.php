@@ -17,12 +17,9 @@ Route::get('/', function () {
 
 
 Route::get('/sign', function () {
-    return view('sign');
+    return view('auth/sign');
 })->name('sign');
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth/login');
 })->name('login');
-
-Route::view('/login', 'login')->name('login');
-Route::view('/sign-up', 'sign')->name('register');
