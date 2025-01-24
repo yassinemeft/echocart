@@ -23,3 +23,7 @@ Route::get('/sign', function () {
 Route::get('/login', function () {
     return view('auth/login');
 })->name('login');
+
+Route::get('/payement', function () {
+    return view('auth/payement');
+})->name('payement');
