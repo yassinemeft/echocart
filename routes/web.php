@@ -16,6 +16,12 @@ Route::get('/home', function () {
 Route::view('/login', 'login')->name('login');
 Route::view('/sign', 'sign')->name('sign');
 
+
+
+Route::get('/payement', function () {
+    return view('auth/payement');
+})->name('payement');
+=======
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

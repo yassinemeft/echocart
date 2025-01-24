@@ -5,16 +5,19 @@
 <!-- Custom styles -->
 @section('style')
 <style>
+
         /* Set the background image and make it cover the entire page */
         body {
             background: #f8f9fa url('/images/background.jpg') no-repeat center center fixed;
             background-size: cover;
         }
+
         /* Set the style for the form container */
         .form-container {
             background: white;
             padding: 30px;
             border-radius: 10px;
+
             /* Add a box shadow to give the form container a nice depth effect */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -23,7 +26,9 @@
             background-color: #343a40;
             color: white;
         }
+
         /* Set the style for the custom button on hover */
+
         .btn-custom:hover {
             background-color: #495057;
         }
@@ -101,6 +106,7 @@
                     <!-- Sign up link -->
                     <p class="text-center mt-3">
                         {{__('Don\'t have an account?')}} <a href="{{ route('register') }}">{{__('Register')}}</a>
+
                     </p>
                 </div>
             </div>
@@ -109,4 +115,5 @@
 
 @endsection
 <!-- Main content ends -->
+
 
