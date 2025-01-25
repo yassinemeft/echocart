@@ -24,6 +24,7 @@
     .btn-custom {
         background-color: #343a40;
         color: white;
+        font-weight: bold;
     }
 
     /* Set the style for the custom button on hover */

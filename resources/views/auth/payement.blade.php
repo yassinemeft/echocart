@@ -14,6 +14,7 @@
         .btn-custom {
             background-color: #343a40;
             color: white;
+            font-weight: bold;
         }
         .btn-custom:hover {
             background-color: #495057;
