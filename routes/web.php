@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 
 Route::resource('products', ProductController::class);
 
@@ -21,7 +22,7 @@ Route::view('/sign', 'sign')->name('sign');
 Route::get('/payement', function () {
     return view('auth/payement');
 })->name('payement');
-=======
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
