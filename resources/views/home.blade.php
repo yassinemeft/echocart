@@ -26,8 +26,62 @@
      <!--Hero Section Ends-->
 
      <!--Second Section-->
-     
-     
+    <div class="d-flex p-5 mb-4 bg-light rounded-3">
+        <div class="py-5">
+            <h1 class="display-5 fw-bold">Custom jumbotron</h1>
+            <p class="col-md-8 fs-4">
+                Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap.
+                Check out the examples below for how you can remix and restyle it to your liking.
+            </p>
+            <button class="btn btn-primary btn-lg" type="button">Example button</button>
+        </div>
+        <div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex p-5 mb-4 bg-light rounded-3">
+    <div class="py-5">
+        <h1 class="display-5 fw-bold">Custom Jumbotron</h1>
+        <p class="col-md-8 fs-4">
+            Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.
+        </p>
+        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+    </div>
+    <div>
+        <div class="row row-cols-md-2 g-4">
+            @foreach ($products as $product)
+                <div class="col">
+                    <div class="card">
+                        <img src="{{ $product->imgUrl }}" class="card-img-top img-fluid h-100" alt="Product Image" style="object-fit: cover; h">
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+
 
 
 @endsection
