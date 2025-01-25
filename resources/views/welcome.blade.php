@@ -56,6 +56,7 @@
             background-color: #495057;
             
         }
+        
     </style>
 @endsection
 @section('content')
