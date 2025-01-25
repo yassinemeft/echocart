@@ -25,6 +25,7 @@
         .btn-custom {
             background-color: #343a40;
             color: white;
+            font-weight: bold;
         }
 
         /* Set the style for the custom button on hover */
@@ -32,6 +33,7 @@
         .btn-custom:hover {
             background-color: #495057;
         }
+        
     </style>
 @endsection
 <!-- Custom styles end -->
@@ -81,15 +83,16 @@
                             </div>
                         </div>
                         <!-- Submit button -->
-                        <div>
-                            <button type="submit" class="btn btn-custom w-100">{{__('Login')}}</button>
-                            <!-- Forgot password link -->
-                            @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                            @endif
+                        <div class="d-flex flex-column align-items-center">
+                        <button type="submit" class="btn btn-custom w-100 mb-3">{{ __('Login') }}</button>
+                        <!-- Forgot password link -->
+                        @if (Route::has('password.request'))
+                        <a class="btn btn-link text-center" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                        @endif
                         </div>
+
                         <!-- Remember me checkbox -->
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
