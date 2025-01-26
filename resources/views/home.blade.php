@@ -2,6 +2,81 @@
 
 @section('title', 'Home')
 
+@section('styles')
+<style>
+    .typing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: #4FC3F7;
+    animation: cursorBlink 0.8s steps(3) infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    75% {
+        opacity: 1;
+    }
+
+    76%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.typing {
+    position: relative;
+    
+}
+
+.typing h2 {
+    position: relative;
+    color:hsl(195, 4.90%, 32.20%);
+    letter-spacing: 5px;
+    font-size: 4rem;
+    overflow: hidden;
+    margin-bottom: 0;
+    animation: type 5s steps(11) infinite;
+}
+
+@keyframes type {
+
+    0%,
+    100% {
+        width: 0px;
+    }
+
+    30%,
+    60% {
+        width: 394.09px;
+    }
+}
+
+@media(max-width: 330px) {
+    .typing h2 {
+        font-size: 3rem;
+        animation: type 5s steps(10) infinite;
+    }
+
+    @keyframes type {
+
+        0%,
+        100% {
+            width: 0px;
+        }
+
+        30%,
+        60% {
+            width: 305px;
+        }
+    }
+}
+</style>
+@endsection
 
 @section('content')
 
@@ -28,11 +103,14 @@
      <!--Second Section-->
     <div class="d-flex p-5 mb-4 bg-light rounded-3">
         <div class="py-5">
-            <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-            <p class="col-md-8 fs-4">
+            <div class="typing mb-4">
+                <h2 class="display-5 fw-bold">Custom jumbotron</h2>
+            </div>
+                <p class="col-md-8 fs-4">
                 Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap.
                 Check out the examples below for how you can remix and restyle it to your liking.
             </p>
+            
             <button class="btn btn-primary btn-lg" type="button">Example button</button>
         </div>
         <div>
