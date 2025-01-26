@@ -15,7 +15,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
         .welcome-container {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(131, 106, 106, 0.62);
             padding: 30px 50px;
             border-radius: 15px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);

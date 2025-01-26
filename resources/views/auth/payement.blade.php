@@ -5,8 +5,13 @@
 <!-- Custom styles -->
 @section('style')
 <style>
+        /* Set the background image and make it cover the entire page */
+    body {
+        background: #f8f9fa url('/images/ecom img.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
         .form-container {
-            background: white;
+            background: rgba(131, 106, 106, 0.62);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -54,7 +59,7 @@
                         <!-- Payment Options -->
                         <h5 class="mb-3">Choose Payment Method:</h5>
                         <div class="payment-option">
-                            <input type="radio" name="paymentMethod" id="creditCard" value="Credit Card" checked>
+                            <input type="radio" name="paymentMethod" id="creditCard" value="Credit Card " checked>
                             <label for="creditCard">Credit/Debit Card</label>
                         </div>
                         <div class="payment-option">

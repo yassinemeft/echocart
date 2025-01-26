@@ -7,13 +7,13 @@
 <style>
     /* Set the background image and make it cover the entire page */
     body {
-        background: #f8f9fa url('/images/background.jpg') no-repeat center center fixed;
+        background: #f8f9fa url('/images/ecom img.jpg') no-repeat center center fixed;
         background-size: cover;
     }
 
     /* Set the style for the form container */
     .form-container {
-        background: white;
+        background: rgba(131, 106, 106, 0.62);
         padding: 30px;
         border-radius: 10px;
 
@@ -103,7 +103,7 @@
                 </form>
                 <!-- Already have an account link -->
                 <p class="text-center mt-3">
-                    {{__('Already have an account?')}} <a href="{{ route('login') }}">{{__('Login')}}</a>
+                    {{__('Already have an account?')}} <a href="{{ route('login') }}" style="color: black;">{{__('Login')}}</a>
                 </p>
             </div>
         </div>
