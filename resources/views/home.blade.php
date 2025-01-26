@@ -11,7 +11,7 @@
     right: 0;
     width: 2px;
     height: 100%;
-    background: #4FC3F7;
+    background: transparent;
     animation: cursorBlink 0.8s steps(3) infinite;
 }
 
@@ -140,7 +140,9 @@
     </div>
     <div class="d-flex p-5 mb-4 bg-light rounded-3">
     <div class="py-5">
-        <h1 class="display-5 fw-bold">Custom Jumbotron</h1>
+    <div class="typing mb-4">
+                <h2 class="display-5 fw-bold">Custom jumbotron</h2>
+            </div>
         <p class="col-md-8 fs-4">
             Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.
         </p>
