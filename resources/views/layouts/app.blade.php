@@ -83,12 +83,9 @@
         </div>
     </nav>
     <!-- Navigation Bar Ends -->
-
-    <!-- Spacing for Fixed Navbar -->
-    <div style="margin-top: 4.5rem;"></div>
-
+     
     <!-- Main Content Section -->
-    <main class="container">
+    <main>
         @yield('content')
     </main>
 
