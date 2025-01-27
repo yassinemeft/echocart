@@ -97,7 +97,7 @@
     <div class="d-flex p-5 mb-4 bg-light rounded-3">
         <div class="py-5 mt-5">
             <div class="typing mb-4">
-                <h2 class="display-3 fw-bold">Welcome to EchoCart</h2>
+                <h2 class="display-3 fw-bold">Welcome EchoCart</h2>
             </div>
             <p class="col-md-10 fs-3">
                 Discover the best deals on top-quality products. Shop with ease and find everything you need in one place. Start exploring our collection today!
