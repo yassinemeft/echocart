@@ -156,6 +156,10 @@
         </div>
     </div>
 
+    <!--line-->
+    <div class="border-bottom my-3"></div>
+    <!--line-->
+
     <!-- Categories section -->
     <div class="container my-5">
         <h2 class="text-center display-3 bold">Explore by Categories</h2>
@@ -220,16 +224,16 @@
             <span class="col"></span>
         </div>
     </div>
+    
+    <!--line-->
+    <div class="border-bottom my-3"></div>
+    <!--line-->
 
     <!-- Back to top button -->
     <a href="#hero-section" class="btn btn-secondary btn-md position-fixed bottom-0 end-0 m-4" style="z-index: 1000;">
         <i class="bi bi-arrow-up"></i>
     </a>
 
-    <i class="bi-collection display-1"></i>
-    <i class="bi bi-alarm"></i>
-    <i class="bi bi-heart-fill text-info"></i>
-    <div class="border-bottom my-5"></div>
 @endsection
 
 
