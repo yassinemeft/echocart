@@ -52,7 +52,7 @@
                 <!-- Form container -->
                 <div class="form-container">
                     <!-- Title -->
-                    <h3 class="text-center" >{{__('Login')}}</h3>
+                    <h3 class="text-center"  style="font-weight: bold;">{{__('Login')}}</h3>
                     <!-- Form -->
                     <form method="POST" action="{{ route('login') }}">
                         <!-- CSRF Token -->
