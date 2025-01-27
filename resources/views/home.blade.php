@@ -4,6 +4,7 @@
 
 @section('styles')
     <style>
+        /* Typing effect styles */
         .typing::before {
             content: '';
             position: absolute;
@@ -75,6 +76,7 @@
 @endsection
 
 @section('content')
+    <!-- Hero section with background image -->
     <div id="hero-section" class="p-5 text-center bg-dark vh-100" 
          style="background-image: url('{{ asset('images/hero.jpg') }}'); background-size: cover; background-position: center;">
         <div class="mask" style="height: 100%;">
@@ -91,6 +93,7 @@
         </div>
     </div>
 
+    <!-- Welcome section with typing effect -->
     <div class="d-flex p-5 mb-4 bg-light rounded-3">
         <div class="py-5 mt-5">
             <div class="typing mb-4">
@@ -114,6 +117,7 @@
         </div>
     </div>
 
+    <!-- Featured section -->
     <div class="container py-5 text-center" id="featured-3">
         <h2 class="display-3 bold">Why Choose EchoCart</h2>
         <div class="d-flex py-4">
@@ -152,6 +156,7 @@
         </div>
     </div>
 
+    <!-- Categories section -->
     <div class="container my-5">
         <h2 class="text-center display-3 bold">Explore by Categories</h2>
         <div class="d-flex flex-wrap g-4">
@@ -216,6 +221,7 @@
         </div>
     </div>
 
+    <!-- Back to top button -->
     <a href="#hero-section" class="btn btn-secondary btn-md position-fixed bottom-0 end-0 m-4" style="z-index: 1000;">
         <i class="bi bi-arrow-up"></i>
     </a>
@@ -225,4 +231,7 @@
     <i class="bi bi-heart-fill text-info"></i>
     <div class="border-bottom my-5"></div>
 @endsection
+
+
+
 
