@@ -8,13 +8,14 @@
 
         /* Set the background image and make it cover the entire page */
         body {
-            background: #f8f9fa url('/images/background.jpg') no-repeat center center fixed;
+            background: #f8f9fa url('/images/ecom img.jpg') no-repeat center center fixed;
             background-size: cover;
+            
         }
 
         /* Set the style for the form container */
         .form-container {
-            background: white;
+            background: rgba(131, 106, 106, 0.62);
             padding: 30px;
             border-radius: 10px;
 
@@ -51,7 +52,7 @@
                 <!-- Form container -->
                 <div class="form-container">
                     <!-- Title -->
-                    <h3 class="text-center">{{__('Login')}}</h3>
+                    <h3 class="text-center" >{{__('Login')}}</h3>
                     <!-- Form -->
                     <form method="POST" action="{{ route('login') }}">
                         <!-- CSRF Token -->
@@ -87,7 +88,7 @@
                         <button type="submit" class="btn btn-custom w-100 mb-3">{{ __('Login') }}</button>
                         <!-- Forgot password link -->
                         @if (Route::has('password.request'))
-                        <a class="btn btn-link text-center" href="{{ route('password.request') }}">
+                        <a class="btn btn-link text-center" href="{{ route('password.request') }}" style="color: black;">
                             {{ __('Forgot Your Password?') }}
                         </a>
                         @endif
@@ -97,7 +98,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} style="background-color: #343a40;">
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
@@ -108,7 +109,7 @@
                     </form>
                     <!-- Sign up link -->
                     <p class="text-center mt-3">
-                        {{__('Don\'t have an account?')}} <a href="{{ route('register') }}">{{__('Register')}}</a>
+                        {{__('Don\'t have an account?')}} <a href="{{ route('register') }}" style="color: black;">{{__('Register')}}</a>
 
                     </p>
                 </div>
