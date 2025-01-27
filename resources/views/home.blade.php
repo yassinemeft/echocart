@@ -101,7 +101,7 @@
     <div class="d-flex p-5 mb-4 bg-light rounded-3">
         <div class="py-5 mt-5">
             <div class="typing mb-4 ">
-                <h2 class="display-3 fw-bold">Welcome EchoCart</h2>
+                <h2 class="display-3 fw-bold">Welcome to EchoCart</h2>
             </div>
             <p class="col-md-10 fs-3">
                 Discover the best deals on top-quality products. Shop with ease and find everything you need in one place. Start exploring our collection today!
@@ -125,7 +125,48 @@
 
     <!--Third Section-->
 
+    <div class="container py-3 text-center" id="featured-3">
+    <h2 class="display-3 bold">Why Choose EchoCart</h2>
+    <div class="row py-4 row-cols-1 row-cols-md-3">
+        <div class="feature col border-2 p-3 rounded shadow">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-primary text-white rounded-circle fs-1 mb-3" style="width: 80px; height: 80px;">
+                <i class="bi bi-truck"></i>
+            </div>
+            <h3 class="fs-2 text-body-emphasis">Fast and Reliable Delivery</h3>
+            <p>
+                We offer a wide range of delivery options to ensure that your products reach you quickly and efficiently.
+            </p>
+        </div>
+
+        <div class="feature col border-2 p-4 rounded shadow mx-2">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-primary text-white rounded-circle fs-1 mb-3" style="width: 80px; height: 80px;">
+                <i class="bi bi-credit-card"></i>
+            </div>
+            <h3 class="fs-2 text-body-emphasis">Secure Payment Options</h3>
+            <p>
+                Our payment options are fully secure and we accept all major credit cards.
+            </p>
+        </div>
+
+        <div class="feature col border-2 p-3 rounded shadow">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-primary text-white rounded-circle fs-1 mb-3" style="width: 80px; height: 80px;">
+                <i class="bi bi-headset"></i>
+            </div>
+            <h3 class="fs-2 text-body-emphasis">Customer Support</h3>
+            <p>
+                Our customer support team is available 24/7 to assist with any questions or concerns.
+            </p>
+        </div>
+    </div>
+</div>
 
 
 
+    <!--Third Section Ends-->
+
+
+    <i class="bi-collection"></i> <!-- Collection Icon -->
+    <i class="bi bi-alarm"></i> <!-- Alarm Icon -->
+    <i class="bi bi-heart-fill text-info"></i> <!-- Heart Icon (Red Color) -->
+    <div class="border-bottom my-5"></div>
 @endsection
