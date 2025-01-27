@@ -49,7 +49,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="form-container">
-                    <h3 class="text-center">Payment</h3>
+                    <h3 class="text-center" style="font-weight: bold;">Payment</h3>
                     <div class="card-icons">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="MasterCard">

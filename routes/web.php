@@ -21,6 +21,10 @@ Route::get('/payement', function () {
     return view('auth/payement');
 })->name('payement');
 
+Route::get('/products', function () {
+    return view('products');
+})->name('products');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

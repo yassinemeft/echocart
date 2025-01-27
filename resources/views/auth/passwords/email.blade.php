@@ -3,7 +3,7 @@
 @section('style')
 <style>
     body {
-    background: #f8f9fa url('/images/background.jpg') no-repeat center center fixed;
+    background: #f8f9fa url('/images/ecom img.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -15,7 +15,7 @@
 
 /* Form container style */
 .form-container {
-    background: white;
+    background: rgba(131, 106, 106, 0.62);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

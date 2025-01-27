@@ -3,7 +3,7 @@
 @section('style')
 <style>
     body {
-        background: #f8f9fa url('/images/background.jpg') no-repeat center center fixed;
+        background: #f8f9fa url('/images/ecom img.jpg') no-repeat center center fixed;
         background-size: cover;
         height: 100vh;
         display: flex;
@@ -13,13 +13,13 @@
     }
 
     .form-container {
-        background: white;
+        background: rgba(131, 106, 106, 0.62);
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         max-width: 400px;
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     .form-container h3 {
@@ -46,8 +46,8 @@
 @section('content')
 
 <div class="container">
-    <div class="form-container">
-        <h3>{{ __('Reset Password') }}</h3>
+    <div class="form-container" >
+        <h3 style="text-align: center;">{{ __('Reset Password') }}</h3>
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
