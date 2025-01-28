@@ -18,7 +18,7 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgba(137, 137, 137, 0.85);">
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color:rgba(137, 137, 137, 0.85);">
         <div class="container-fluid">
             <!-- Brand Logo -->
             <a class="navbar-brand mx-5" href="{{ url('/') }}">
