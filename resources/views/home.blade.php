@@ -156,80 +156,272 @@
         </div>
     </div>
 
+    <!--line-->
+    <div class="border-bottom my-3"></div>
+    <!--line-->
+
     <!-- Categories section -->
-    <div class="container my-5">
+    <div class="container-fluid my-5">
         <h2 class="text-center display-3 bold">Explore by Categories</h2>
-        <div class="d-flex flex-wrap g-4">
+        <div class="d-flex justify-content-center flex-wrap g-4">
             @php
                 $categories = [
-                    'Arts & Crafts', 
-                    'Automotive', 
-                    'Baby Products', 
+                    'Arts & Crafts',
+                    'Automotive',
+                    'Baby Products',
                     'Beauty',
-                    'Personal Care', 
-                    'Electronics', 
-                    'Fashion', 
-                    'Health & Household', 
-                    'Home & Kitchen', 
-                    'Office Supplies', 
-                    'Sports', 
-                    'Toys & Games', 
-                    'Books', 
-                    'Pet Supplies', 
-                    'Garden', 
+                    'Personal Care',
+                    'Electronics',
+                    'Fashion',
+                    'Health & Household',
+                    'Home & Kitchen',
+                    'Office Supplies',
+                    'Sports',
+                    'Toys & Games',
+                    'Books',
+                    'Pet Supplies',
+                    'Garden',
                     'Gaming Consoles',
-                    'Crafts', 
-                    'Auto', 
-                    'Tech', 
-                    'Home', 
-                    'Office', 
-                    'Fitness', 
+                    'Crafts',
+                    'Auto',
+                    'Tech',
+                    'Home',
+                    'Office',
+                    'Fitness',
                     'Games',
-                    'Music', 
-                    'Appliances', 
-                    'Outdoor', 
-                    'Baby Gear', 
-                    'Food & Drink', 
-                    'Jewelry', 
-                    'Furniture', 
-                    'Tools', 
-                    'Travel', 
-                    'Luggage', 
-                    'Stationery', 
-                    'Party Supplies', 
+                    'Music',
+                    'Appliances',
+                    'Outdoor',
+                    'Baby Gear',
+                    'Food & Drink',
+                    'Jewelry',
+                    'Furniture',
+                    'Tools',
+                    'Travel',
+                    'Luggage',
+                    'Stationery',
+                    'Party Supplies',
                     'Education',
                     'Musical Instruments',
                     'Arts & Collectibles',
                     'Home Decor',
+                    'Photography',
+                    'Smart Devices',
+                    'Wellness',
+                    'Camping Gear',
+                    'Clothing',
+                    'Footwear',
+                    'Accessories',
+                    'Watches',
+                    'Cosmetics',
+                    'Gaming Accessories',
+                    'Kitchen Appliances',
+                    'Seasonal Products',
+                    'Office Furniture',
+                    'DIY & Craft Supplies',
+                    'Green Products',
+                    'Safety Equipment',
+                    'Industrial Tools',
+                    'Handbags',
+                    'Jewelry',
+                    'Baby Clothing',
+                    'Kids',
+                    'Men',
+                    'Women',
+                    'Collectibles',
+                    'Coins',
+                    'Sports Memorabilia',
+                    'Toys',
+                    'Vintage',
+                    'Home & Garden',
+                    'Kitchen',
+                    'Pet',
+                    'Tools & Hardware',
+                    'Electronics',
+                    'Laptop',
+                    'Mobile',
+                    'Tablet',
+                    'TV',
+                    'Home Audio',
+                    'Headphones',
+                    'Gaming',
+                    'Software',
+                    'Camera',
+                    'Smartwatches',
                 ];
+            
             @endphp
 
             @foreach ($categories as $index => $category)
                 <div class="d-flex {{ $index % 2 === 0 ? 'ms-md-0' : 'ms-md-2' }} mt-3">
-                    <div class="card text-center shadow border-0 mx-1">
-                        <div class="card-body fs-4">
+                    <div class="card text-center border-1 mx-1 py-0">
+                        <div class="card-body py-1">
                             {{ $category }}
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="row text-center row-cols-3 row-cols-md-3 mt-2">
+        <div class="row text-center row-cols-3 row-cols-md-3 mt-4">
             <span class="col"></span>
-            <button class="btn btn-secondary btn-lg" type="button">And Many More</button>
+            <button class="btn btn-secondary btn-md" type="button">And Many More</button>
             <span class="col"></span>
         </div>
     </div>
+    
+
+    <!-- Contact Us Section -->
+<!-- Contact Us Section -->
+<section class="py-5 bg-light" id="contact-us">
+  <div class="container justify-content-center text-center">
+
+    <!-- Section Header -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Contact Us</h2>
+      <p class="text-muted">
+        Have questions? We'd love to hear from you. Our team is here to assist you!
+      </p>
+    </div>
+
+    <div class="row justify-content-center text-center">
+      <!-- Contact Form -->
+      <div class="flex justify-content-center col-md-7 me-7">
+        <form
+          id="contact-form"
+          action="mail.php"
+          method="POST"
+          class="p-4 shadow rounded bg-white d-flex justify-content-center">
+          <div>
+              <!-- Name and Email -->
+              <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Your Name"
+                  required
+                />
+                <label for="name">Your Name</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Your Email"
+                  required
+                />
+                <label for="email">Your Email</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subject -->
+          <div class="form-floating my-3">
+              <input
+              type="text"
+              id="subject"
+              name="subject"
+              class="form-control"
+              placeholder="Subject"
+              required
+            />
+            <label for="subject">Subject</label>
+          </div>
+
+          <!-- Message -->
+          <div class="form-floating mb-4">
+            <textarea
+              id="message"
+              name="message"
+              class="form-control"
+              placeholder="Your Message"
+              style="height: 150px;"
+              required
+            ></textarea>
+            <label for="message">Your Message</label>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary btn-md">
+                  Send Message
+                </button>
+            </div>
+        </div>
+            <!-- Contact Information -->
+           <div class="ms-5 mt-4">
+               <div class="grid cols-3 justify-content-end text-center">
+                   <div class="col-12">
+                       <div class="mb-3">
+                           <i class="bi bi-geo-alt fs-2 text-secondary"></i>
+                           <p class="mb-0">
+                               Essaouira, CA 94126, Morocco
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <i class="bi bi-telephone fs-2 text-secondary"></i>
+                            <p class="mb-0">+1 234 567 89</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <i class="bi bi-envelope fs-2 text-secondary"></i>
+                            <p class="mb-0">ymeftah777@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+      </div>
+      <!-- End of Contact Form -->
+    
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About EchoCart</h5>
+                    <p>EchoCart offers a seamless shopping experience with top-quality products at unbeatable prices.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
     <!-- Back to top button -->
     <a href="#hero-section" class="btn btn-secondary btn-md position-fixed bottom-0 end-0 m-4" style="z-index: 1000;">
         <i class="bi bi-arrow-up"></i>
     </a>
 
-    <i class="bi-collection display-1"></i>
-    <i class="bi bi-alarm"></i>
-    <i class="bi bi-heart-fill text-info"></i>
-    <div class="border-bottom my-5"></div>
 @endsection
 
 

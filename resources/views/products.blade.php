@@ -1,11 +1,10 @@
 @extends('layouts.app')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Collection</title>
-    <style>
+
+@section('title', 'Product Collection')
+
+<!-- Custom styles -->
+@section('styles')
+<style>
         /* Reset global styles */
         body {
             background: #f8f9fa;
@@ -42,6 +41,7 @@
         .card {
             background: rgba(131, 106, 106, 0.62);
             border-radius: 10px;
+            border: 0px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
@@ -87,8 +87,9 @@
             color: inherit;
         }
     </style>
-</head>
-<body>
+@endsection
+
+@section('content')
     <!-- Main container -->
     <div class="container">
         <!-- Page title -->
@@ -96,7 +97,7 @@
 
         <!-- Grid layout for products -->
         <div class="grid">
-            <?php
+            @php
             // Liste des produits statiques
             $products = [
                 ["title" => "T-shirt", "price" => "50 DH"],
@@ -109,25 +110,23 @@
                 ["title" => "Stickers", "price" => "5 DH"],
                 ["title" => "Pillow", "price" => "35 DH"],
             ];
+            @endphp
 
-            // Affichage des produits
-            foreach ($products as $product) {
-                ?>
+            <!-- Product cards -->
+            @foreach ($products as $product) 
                 <a href="#" class="card-link">
                     <div class="card">
                         <!-- Product image -->
-                        <img src="/images/t-shirt.jpg" alt="<?php echo $product['title']; ?>" class="card-img">
+                        <img src="/images/t-shirt.jpg" alt="{{ $product['title'] }}" class="card-img">
                         <!-- Product details -->
                         <div class="card-body">
-                           <h3><?php echo $product['title'] ?> - <?php echo $product['price']; ?></h3>
+                           <h3>{{   $product['title'] }} - {{   $product['price']   }}</h3>
                              
                         </div>
                     </div>
                 </a>
-                <?php
-            }
-            ?>
+            @endforeach
         </div>
     </div>
-</body>
-</html>
+@endsection
+
