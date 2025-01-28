@@ -18,18 +18,18 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-dark fixed-top navbar-dark">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgba(137, 137, 137, 0.85);">
         <div class="container-fluid">
             <!-- Brand Logo -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand mx-5" href="{{ url('/') }}">
                 <img src="{{ asset('images/echo_logo.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                 EchoCart
             </a>
 
             <!-- Search Form -->
             <form class="d-flex" role="search" style="width: 45%;">
-                <input class="form-control me-2 rounded-pill" type="search" placeholder="Type something..." aria-label="Search">
-                <button class="btn btn-outline-secondary rounded-pill" type="submit">Search</button>
+                <input class="form-control ms-5 rounded-pill" type="search" placeholder="Type something..." aria-label="Search">
+                <button class="btn btn-outline-light rounded-pill ms-2" type="submit">Search</button>
             </form>
 
             <!-- Toggler for Mobile View -->
