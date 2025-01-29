@@ -56,3 +56,8 @@ use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
+// View Products page
+Route::get('/view_products', function () {
+    return view('view_products');
+})->name('view_products');
+
