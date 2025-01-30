@@ -11,7 +11,8 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-
+    <!-- Livewire Styles -->
+    @livewireStyles
     <!-- Custom styles -->
     @yield('styles')
 </head>
@@ -27,8 +28,8 @@
             </a>
 
             <!-- Search Form -->
-            <form class="d-flex" role="search" style="width: 45%;">
-                <input class="form-control ms-5 rounded-pill" type="search" placeholder="Type something..." aria-label="Search">
+            <form action="{{ route('product.search') }}" method="GET" class="d-flex" role="search" style="width: 45%;">
+                <input class="form-control ms-5 rounded-pill" name="query" type="search" placeholder="Type something..." aria-label="Search" value="{{ request('query') }}">
                 <button class="btn btn-outline-light rounded-pill ms-2" type="submit">Search</button>
             </form>
 
@@ -97,6 +98,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
+    <!-- Livewire Scripts -->
+    @livewireScripts
     <!-- Custom Scripts -->
     @yield('scripts')
 
