@@ -50,3 +50,9 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/search', [ProductController::class, 'search'])->name('product.search');
 
+// View Products page
+Route::get('/view_products', function () {
+    return view('view_products');
+})->name('view_products');
+
+
