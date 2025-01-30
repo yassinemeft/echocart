@@ -45,3 +45,8 @@ use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
+// Product search
+use App\Http\Controllers\ProductController;
+
+Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+
