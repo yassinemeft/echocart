@@ -1,36 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // Show all products
-    public function index()
+    public function search(Request $request)
     {
-        $products = Product::all();
-        return view('products.index', compact('products'));
-    }
+    // Get search query from request
+    $searchQuery = $request->input('query');
 
-    // Show the form to create a new product
-    public function create()
-    {
-        return view('products.create');
-    }
+    // Perform search on the 'title' and 'asin' columns (or any other relevant columns)
+    $products = Product::whereRaw("MATCH(title, asin) AGAINST (? IN NATURAL LANGUAGE MODE)", [$searchQuery])
+                       ->whereRaw("MATCH(title, asin) AGAINST (? IN BOOLEAN MODE)", [$searchQuery])
+                       ->whereRaw('CHAR_LENGTH(title) > 5')
+                       ->orderByRaw('CHAR_LENGTH(title) ASC')
+                       ->paginate(10);
 
-    // Store a new product
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'description' => 'required|string',
-            'image_url' => 'nullable|url',
-        ]);
-
-        Product::create($validated);
-        return redirect()->route('products.index');
+    return view('products', compact('products'));
     }
 }

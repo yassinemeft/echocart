@@ -97,36 +97,29 @@
 
         <!-- Grid layout for products -->
         <div class="grid">
-            @php
-            // Liste des produits statiques
-            $products = [
-                ["title" => "T-shirt", "price" => "50 DH"],
-                ["title" => "Mug", "price" => "20 DH"],
-                ["title" => "Phone Case", "price" => "10 DH"],
-                ["title" => "Poster", "price" => "30 DH"],
-                ["title" => "Hoodie", "price" => "80 DH"],
-                ["title" => "Notebook", "price" => "15 DH"],
-                ["title" => "Socks", "price" => "25 DH"],
-                ["title" => "Stickers", "price" => "5 DH"],
-                ["title" => "Pillow", "price" => "35 DH"],
-            ];
-            @endphp
-
             <!-- Product cards -->
             @foreach ($products as $product) 
                 <a href="#" class="card-link">
                     <div class="card">
                         <!-- Product image -->
-                        <img src="/images/t-shirt.jpg" alt="{{ $product['title'] }}" class="card-img">
+                        <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
                         <!-- Product details -->
                         <div class="card-body">
-                           <h3>{{   $product['title'] }} - {{   $product['price']   }}</h3>
-                             
+                           <h3>{{ $product->title }} - {{ $product->price }}</h3>
                         </div>
                     </div>
                 </a>
             @endforeach
         </div>
+    </div>
+
+    @if($products->isEmpty())
+        <p>No products found matching your search.</p>
+    @endif
+
+    <!-- Pagination links -->
+    <div class="text-center">
+    {{ $products->links() }}
     </div>
 @endsection
 

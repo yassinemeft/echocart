@@ -12,13 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
-
-// Products resource
-Route::resource('products', ProductController::class)->only([
-    'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
-]);
 
 // Home page
 Route::get('/', function () {
@@ -39,11 +33,6 @@ Route::get('/payement', function () {
     return view('auth/payement');
 })->name('payement');
 
-// Products page
-Route::get('/products', function () {
-    return view('products');
-})->name('products');
-
 // Authentication routes
 Auth::routes();
 
@@ -56,8 +45,14 @@ use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
+// Product search
+use App\Http\Controllers\ProductController;
+
+Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+
 // View Products page
 Route::get('/view_products', function () {
     return view('view_products');
 })->name('view_products');
+
 

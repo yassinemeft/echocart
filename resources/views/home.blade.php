@@ -73,6 +73,8 @@
             }
         }
     </style>
+
+
 @endsection
 
 @section('content')
@@ -389,6 +391,20 @@
     </div>
 </section>
 
+@if($products->isEmpty())
+    <p>No products found matching your search.</p>
+@else
+    <div class="product-list">
+        @foreach($products as $product)
+            <div class="product-item">
+                <h5>{{ $product->title }}</h5>
+                <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" />
+                <p>Price: ${{ $product->price }}</p>
+                <a href="{{ $product->productURL }}" target="_blank">View Product</a>
+            </div>
+        @endforeach
+    </div>
+@endif
 
 
     <!-- Footer Section -->
@@ -416,6 +432,7 @@
             </div>
         </div>
     </footer>
+
 
 
     <!-- Back to top button -->
