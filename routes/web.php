@@ -45,3 +45,24 @@ use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
+// Product search
+use App\Http\Controllers\ProductController;
+
+Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+
+// View Products page
+Route::get('/view_products', function () {
+    return view('view_products');
+})->name('view_products');
+
+// View create product page
+Route::get('/create_product', function () {
+    return view('create_product');
+})->name('create_product');
+
+// View profile page
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
+
+
