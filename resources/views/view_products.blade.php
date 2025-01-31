@@ -93,15 +93,14 @@
             </a>
         </div>
         <div class="product-details">
-            <h1 style="font-weight: bold;">Produit Test</h1>
+            <h1 style="font-weight: bold;">Product Name</h1>
             <p><strong>Price:</strong> 99.99€</p>
-            <p><strong>Description:</strong> Ceci est un produit de test avec une image d'exemple.</p>
             <div class="product-actions">
-                <label for="quantity">Entrez la quantité souhaitée</label>
+                <label for="quantity">Enter quantity:</label>
                 <input type="number" id="quantity" name="quantity" value="1" min="1">
-                <button class="btn-buy">Achetez maintenant</button>
-                <button class="btn-secondary">Ajouter au panier</button>
-                <button class="btn-secondary">Ajouter aux favoris</button>
+                <button class="btn-buy">Buy</button>
+                <button class="btn-secondary">Add to Cart</button>
+                <button class="btn-secondary">Add to Wishlist</button>
             </div>
         </div>
     </div>

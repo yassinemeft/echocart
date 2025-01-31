@@ -53,8 +53,19 @@ Route::get('/view_products', function () {
     return view('view_products');
 })->name('view_products');
 
+
 // Product search
 Route::get('/products', [ProductController::class, 'search'])->name('product.search');
 
+
+// View create product page
+Route::get('/create_product', function () {
+    return view('create_product');
+})->name('create_product');
+
+// View profile page
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
 
 
