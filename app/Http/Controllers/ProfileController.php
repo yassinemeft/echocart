@@ -3,16 +3,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User; // Ensure the User model is imported
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
     public function show()
     {
-        $user = Auth::user();
-        $orders = $user->orders; // Supposons que l'utilisateur a une relation "orders"
-        return view('profile', compact('user', 'orders'));
+        return view('profile', [
+            'user' => Auth::user() // Récupérer directement l'utilisateur connecté
+        ]);
     }
 
     public function upload(Request $request)
@@ -23,15 +24,41 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        if ($user->profile_image) {
-            Storage::delete($user->profile_image);
+        try {
+            if ($user->profile_image) {
+                Storage::disk('public')->delete($user->profile_image);
+            }
+
+            $path = $request->file('profile_image')->store('profile_images', 'public');
+            $user->update(['profile_image' => $path]); // Mise à jour simplifiée
+
+            return redirect()->route('profile.show')->with('success', 'Profile image updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error updating profile image: ' . $e->getMessage());
+            return redirect()->route('profile.show')->with('error', 'An error occurred while updating your profile image.');
         }
+    }
 
-        $path = $request->file('profile_image')->store('profile_images', 'public');
+    public function deleteAccount(Request $request)
+    {
+        $user = Auth::user();
 
-        $user->profile_image = $path;
+        try {
+            if ($user->profile_image) {
+                Storage::disk('public')->delete($user->profile_image);
+            }
 
-        return redirect()->route('profile.show')->with('success', 'Profile image updated successfully.');
+            Auth::logout();
+            $user->delete();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('/')->with('success', 'Your account has been deleted successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error deleting account: ' . $e->getMessage());
+            return redirect()->route('profile.show')->with('error', 'An error occurred while deleting your account.');
+        }
     }
 }
 ?>

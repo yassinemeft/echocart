@@ -2,7 +2,6 @@
 
 @section('title', 'Register')
 
-
 @section('style')
 <style>
     /* Set the background image and make it cover the entire page */
@@ -20,6 +19,7 @@
         /* Add a box shadow to give the form container a nice depth effect */
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
     /* Set the style for the custom button */
     .btn-custom {
         background-color: #343a40;
@@ -70,6 +70,32 @@
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" required>
                             <!-- Email errors -->
                             @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <!-- Phone input -->
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">{{ __('Phone') }}</label>
+                        <div>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter your phone number" value="{{ old('phone') }}" required>
+                            <!-- Phone errors -->
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <!-- Address input -->
+                    <div class="mb-3">
+                        <label for="address" class="form-label">{{ __('Address') }}</label>
+                        <div>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Enter your address" value="{{ old('address') }}" required>
+                            <!-- Address errors -->
+                            @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

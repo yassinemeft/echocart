@@ -66,3 +66,6 @@ Route::get('/profile', function () {
 })->name('profile');
 
 
+use App\Http\Controllers\ProfileController;
+
+Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->name('account.delete');

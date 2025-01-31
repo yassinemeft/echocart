@@ -77,16 +77,22 @@
     }
     .btn-action:hover {
         background-color: #495057;
-        box-shadow: black ;
 
     }
     .btn-logout {
-        background-color: #dc3545;
-        margin-top: 20px;
+        background-color:rgb(168, 16, 32);
+        color: white;
+        border: none;               
+        padding: 10px;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
         width: 100%;
+        font-weight: bold;
     }
     .btn-logout:hover {
-        background-color: #b02a37;
+        background-color:rgb(235, 62, 79);
     }
     .request-history {
         margin-top: 30px;
@@ -107,6 +113,23 @@
         font-size: 1rem;
         color: #6c757d;
     }
+    .btn-delete {
+    background-color:rgb(168, 16, 32);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    font-weight: bold;
+}
+
+.btn-delete:hover {
+    background-color:rgb(235, 62, 79);
+}
+
 </style>
 @endsection
 
@@ -115,7 +138,7 @@
     
     <div class="profile-header">
         <div class="profile-image">
-            <img src="{{ asset('/images/default-profile.png') }}" alt="Profile Image">
+            <img src="{{ asset('/images/profile.jpg') }}" alt="Profile Image">
             <form action="#" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="profile_image" id="profile-upload" style="display: none;" onchange="this.form.submit()">
@@ -125,32 +148,33 @@
     </div>
 
     <div class="profile-info">
-        <div class="info-row">
-            <span class="info-label">Name:</span>
-            <span class="info-value">John Doe</span>
-            <button class="btn-action">Edit</button>
-        </div>
-        <div class="info-row">
-            <span class="info-label">Email:</span>
-            <span class="info-value">johndoe@example.com</span>
-            <button class="btn-action">Edit</button>
-        </div>
-        <div class="info-row">
-            <span class="info-label">Password:</span>
-            <span class="info-value">********</span>
-            <button class="btn-action">Change</button>
-        </div>
-        <div class="info-row">
-            <span class="info-label">Phone:</span>
-            <span class="info-value">(123) 456-7890</span>
-            <button class="btn-action">Edit</button>
-        </div>
-        <div class="info-row">
-            <span class="info-label">Address:</span>
-            <span class="info-value">123 Main St, Springfield, IL</span>
-            <button class="btn-action">Edit</button>
-        </div>
+    <div class="info-row">
+        <span class="info-label">Name:</span>
+        <span class="info-value">{{ Auth::user()->name }}</span>
+        <button class="btn-action">Edit</button>
     </div>
+    <div class="info-row">
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{ Auth::user()->email }}</span>
+        <button class="btn-action">Edit</button>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Password:</span>
+        <span class="info-value">********</span>
+        <button class="btn-action">Change</button>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Phone:</span>
+        <span class="info-value">{{ Auth::user()->phone }}</span>
+        <button class="btn-action">Edit</button>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Address:</span>
+        <span class="info-value">{{ Auth::user()->address }}</span>
+        <button class="btn-action">Edit</button>
+    </div>
+</div>
+
 
     <div class="request-history">
         <h2>Request History</h2>
@@ -168,11 +192,17 @@
             <p><strong>Request #3</strong></p>
             <p>Date: 10 Mar 2024</p>
             <p>Status: In Progress</p>
-        </div>
-        </div>
-             <form action="{{ route('logout') }}" method="POST">
+        </div><br>
+        <div>
+          <form action="{{ route('logout') }}" method="POST">
              @csrf
              <button type="submit" class="btn-action btn-logout">Logout</button>
-             </form>
+          </form><br>
+        
+          <form id="delete-account-form" action="{{ route('account.delete') }}" method="POST">
+             @csrf
+             @method('DELETE')
+            <button type="submit" class="btn-action btn-delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+          </form>
         </div>
 @endsection
