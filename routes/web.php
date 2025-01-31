@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductController;
 
 // Home page
 Route::get('/', function () {
@@ -46,13 +47,14 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.fo
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 // Product search
-use App\Http\Controllers\ProductController;
-
-Route::get('/search', [ProductController::class, 'search'])->name('product.search');
 
 // View Products page
 Route::get('/view_products', function () {
     return view('view_products');
 })->name('view_products');
+
+// Product search
+Route::get('/products', [ProductController::class, 'search'])->name('product.search');
+
 
 
