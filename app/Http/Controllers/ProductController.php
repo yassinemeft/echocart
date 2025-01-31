@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+
+
 class ProductController extends Controller
 {
-    public function search(Request $request)
-{
+    public function search(Request $request) {
     $query = Product::query();
 
     // Keyword Search
@@ -49,9 +51,12 @@ class ProductController extends Controller
     }
 
     // Get Filtered Products with Pagination
-    $products = $query->paginate(12);
+    $products = $query->paginate(210);
 
     return view('products', compact('products'));
 }
+
+
+
 
 }
