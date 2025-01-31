@@ -17,7 +17,7 @@
     .container {
         max-width: 1300px;
         margin: auto;
-        padding: 20px;
+        padding: 15px;
         display: flex;
         gap: 20px;
     }
@@ -137,30 +137,13 @@
         color: #f1c40f;
     }
 
-    /* Pagination */
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #27ae60;
-        border-color: #27ae60;
-    }
-
-    .pagination .page-link {
-        color: #333;
-        border-radius: 8px;
-    }
 </style>
 @endsection
 
 @section('content')
 <div class="container">
     <!-- Sidebar Filter -->
-    <div class="sidebar">
-        
+        <div class="sidebar sticky-top" style="top: 130px;">
         <h3 class="filter-title">Sort By</h3>
         <form action="{{ route('product.search') }}" method="GET">
             <div class="filter-group">
@@ -171,7 +154,7 @@
                     <option value="best-rating" {{ request('sort') == 'best-rating' ? 'selected' : '' }}>Best Rating</option>
                 </select>
             </div>
-            <button class="filter-btn" type="submit">Apply Filter</button>
+            <button class="filter-btn" type="submit">Apply</button>
         </form>
     </div>
 
@@ -183,7 +166,7 @@
             <div class="card">
                 <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
                 <div class="card-body">
-                    <h3>{{ $product->title }}</h3>
+                    <h3>{{ Str::limit($product->title, 40) }}</h3>
                     <p class="product-meta">
                         <span class="price">${{ number_format($product->price, 2) }}</span>
                         <span class="rating">⭐{{ $product->stars }}</span>
@@ -191,12 +174,18 @@
                 </div>
             </div>
             @endforeach
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination">
-        {{ $products->appends(request()->query())->links() }}
+            <!-- Pagination -->
         </div>
     </section>
+    
 </div>
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-5 fs-5">
+    {{ $products->appends(request()->query())->links() }}    
+</div>
+
+     @endsection
+
+@section('scripts')
+
 @endsection
