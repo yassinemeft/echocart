@@ -143,7 +143,7 @@
 @section('content')
 <div class="container">
     <!-- Sidebar Filter -->
-        <div class="sidebar sticky-top" style="top: 130px;">
+    <div class="sidebar sticky-top" style="top: 130px;">
         <h3 class="filter-title">Sort By</h3>
         <form action="{{ route('product.search') }}" method="GET">
             <div class="filter-group">
@@ -164,23 +164,29 @@
         <div class="grid">
             @foreach ($products as $product)
             <div class="card">
-                <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
-                <div class="card-body">
-                    <h3>{{ Str::limit($product->title, 40) }}</h3>
-                    <p class="product-meta">
-                        <span class="price">${{ number_format($product->price, 2) }}</span>
-                        <span class="rating">⭐{{ $product->stars }}</span>
-                    </p>
-                </div>
+                    <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none;">
+                    <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
+                    <div class="card-body">
+                        <h3>{{ Str::limit($product->title, 40) }}</h3>
+                        <p class="product-meta">
+                            <span class="price">${{ number_format($product->price, 2) }}</span>
+                            <span class="rating">⭐{{ $product->stars }}</span>
+                        </p>
+                    </div>
+                </a>
             </div>
             @endforeach
             <!-- Pagination -->
         </div>
     </section>
+
+
+    <!-- Products Section -->
+    
     
 </div>
 <!-- Pagination -->
-<div class="d-flex justify-content-center mt-5 fs-5">
+<div class="d-flex justify-content-center mt-5 fs-3">
     {{ $products->appends(request()->query())->links() }}    
 </div>
 
