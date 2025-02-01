@@ -31,9 +31,9 @@ Route::view('/login', 'login')->name('login');
 Route::view('/sign', 'sign')->name('sign');
 
 // Payement page
-Route::get('/payement', function () {
-    return view('auth/payement');
-})->name('payement');
+Route::get('/payment', function () {
+    return view('auth/payment');
+})->name('payment');
 
 // Authentication routes
 Auth::routes();
