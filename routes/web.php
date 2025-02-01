@@ -47,6 +47,10 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.fo
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 // Product search
+use App\Http\Controllers\ProfileController;
+
+Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+
 
 // View Products page
 Route::get('/view_product', function () {
@@ -69,8 +73,16 @@ Route::get('/profile', function () {
 })->name('profile');
 
 
+
 // View product page
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 
+
+
+// delete account
+Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->name('account.delete');
+
+// show profile
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
 

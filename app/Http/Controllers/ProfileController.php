@@ -3,35 +3,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User; // Ensure the User model is imported
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
+
+    public function deleteAccount(Request $request)
+    {
+        $user = Auth::user();
+
+        try {
+            // Skip deleting the profile image when deleting the account
+            // if ($user->profile_image) {
+            //     Storage::disk('public')->delete($user->profile_image);
+            // }
+
+            // Supprimer l'utilisateur de la base de données
+            User::destroy($user->id);
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('/')->with('success', 'Your account has been deleted successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error deleting account: ' . $e->getMessage());
+            return redirect()->route('profile.show')->with('error', 'An error occurred while deleting your account.');
+        }
+    }
     public function show()
     {
         $user = Auth::user();
-        $orders = $user->orders; // Supposons que l'utilisateur a une relation "orders"
-        return view('profile', compact('user', 'orders'));
-    }
 
-    public function upload(Request $request)
-    {
-        $request->validate([
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $user = Auth::user();
-
-        if ($user->profile_image) {
-            Storage::delete($user->profile_image);
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Vous devez être connecté pour voir votre profil.');
         }
 
-        $path = $request->file('profile_image')->store('profile_images', 'public');
-
-        $user->profile_image = $path;
-
-        return redirect()->route('profile.show')->with('success', 'Profile image updated successfully.');
+        return view('profile', compact('user'));
     }
 }
 ?>
