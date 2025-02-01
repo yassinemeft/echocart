@@ -49,9 +49,9 @@ Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact
 // Product search
 
 // View Products page
-Route::get('/view_products', function () {
-    return view('view_products');
-})->name('view_products');
+Route::get('/view_product', function () {
+    return view('view_product');
+})->name('view_product');
 
 
 // Product search
@@ -67,5 +67,10 @@ Route::get('/create_product', function () {
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
+
+
+// View product page
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
 
 
