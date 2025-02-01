@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Pagination\Paginator;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 
@@ -54,9 +55,25 @@ class ProductController extends Controller
     $products = $query->paginate(210);
 
     return view('products', compact('products'));
+
+
+    
 }
 
+// View Product Details
+    public function show($id)
+    {
+        $product = Product::findOrFail($id); // Fetch product by ID
+        $relatedProducts = Product::where('category_id', $product->category_id)
+                                ->limit(21)
+                                ->get();
 
+        $randomProducts = Product::inRandomOrder()->limit(14)->get();
+
+        $reviews = Review::inRandomOrder()->limit(20)->get();
+                      
+        return view('view_product', compact('product', 'relatedProducts', 'randomProducts', 'reviews'));
+    }
 
 
 }

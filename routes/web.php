@@ -31,9 +31,9 @@ Route::view('/login', 'login')->name('login');
 Route::view('/sign', 'sign')->name('sign');
 
 // Payement page
-Route::get('/payement', function () {
-    return view('auth/payement');
-})->name('payement');
+Route::get('/payment', function () {
+    return view('auth/payment');
+})->name('payment');
 
 // Authentication routes
 Auth::routes();
@@ -53,9 +53,9 @@ Route::get('/search', [ProductController::class, 'search'])->name('product.searc
 
 
 // View Products page
-Route::get('/view_products', function () {
-    return view('view_products');
-})->name('view_products');
+Route::get('/view_product', function () {
+    return view('view_product');
+})->name('view_product');
 
 
 // Product search
@@ -73,8 +73,16 @@ Route::get('/profile', function () {
 })->name('profile');
 
 
+
+// View product page
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+
+
+
 // delete account
 Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->name('account.delete');
 
 // show profile
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
+
