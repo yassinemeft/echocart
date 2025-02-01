@@ -13,6 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController;
 
 // Home page
 Route::get('/', function () {
@@ -40,21 +42,25 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Contact form
-use App\Http\Controllers\ContactController;
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 // Product search
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+
 
 // View Products page
 Route::get('/view_products', function () {
     return view('view_products');
 })->name('view_products');
+
+
+// Product search
+Route::get('/products', [ProductController::class, 'search'])->name('product.search');
+
 
 // View create product page
 Route::get('/create_product', function () {
