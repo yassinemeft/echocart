@@ -47,6 +47,7 @@ Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact
 
 // Product search
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/search', [ProductController::class, 'search'])->name('product.search');
 
@@ -66,6 +67,8 @@ Route::get('/profile', function () {
 })->name('profile');
 
 
-use App\Http\Controllers\ProfileController;
-
+// delete account
 Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->name('account.delete');
+
+// show profile
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');

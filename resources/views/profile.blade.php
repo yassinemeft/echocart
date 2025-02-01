@@ -165,16 +165,15 @@
     </div>
     <div class="info-row">
         <span class="info-label">Phone:</span>
-        <span class="info-value">{{ Auth::user()->phone }}</span>
+        <span class="info-value">{{ $user->phone }}</span>
         <button class="btn-action">Edit</button>
     </div>
     <div class="info-row">
         <span class="info-label">Address:</span>
-        <span class="info-value">{{ Auth::user()->address }}</span>
+        <span class="info-value">{{ $user->address }}</span>
         <button class="btn-action">Edit</button>
     </div>
 </div>
-
 
     <div class="request-history">
         <h2>Request History</h2>
@@ -205,4 +204,6 @@
             <button type="submit" class="btn-action btn-delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
           </form>
         </div>
+    </div>
+
 @endsection

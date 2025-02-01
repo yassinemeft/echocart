@@ -35,7 +35,6 @@
 @endsection
 
 @section('content')
-
 <!-- Container for the form -->
 <div class="container mt-5">
     <!-- Row for the form -->
@@ -45,7 +44,7 @@
             <!-- Form container -->
             <div class="form-container">
                 <!-- Title -->
-                <h3 class="text-center" style="font-weight: bold;">{{__('Register')}}</h3>
+                <h3 class="text-center" style="font-weight: bold;">{{ __('Register') }}</h3>
                 <!-- Form -->
                 <form method="POST" action="{{ route('register') }}">
                     <!-- CSRF Token -->
@@ -129,11 +128,10 @@
                 </form>
                 <!-- Already have an account link -->
                 <p class="text-center mt-3">
-                    {{__('Already have an account?')}} <a href="{{ route('login') }}" style="color: black;">{{__('Login')}}</a>
+                    {{ __('Already have an account?') }} <a href="{{ route('login') }}" style="color: black;">{{ __('Login') }}</a>
                 </p>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
