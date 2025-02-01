@@ -390,48 +390,10 @@
         </div>
     </div>
 </section>
-
-@if($products->isEmpty())
-    <p>No products found matching your search.</p>
-@else
-    <div class="product-list">
-        @foreach($products as $product)
-            <div class="product-item">
-                <h5>{{ $product->title }}</h5>
-                <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" />
-                <p>Price: ${{ $product->price }}</p>
-                <a href="{{ $product->productURL }}" target="_blank">View Product</a>
-            </div>
-        @endforeach
-    </div>
-@endif
+<!-- End of Contact Us Section -->
 
 
-    <!-- Footer Section -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>About EchoCart</h5>
-                    <p>EchoCart offers a seamless shopping experience with top-quality products at unbeatable prices.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Home</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Products</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 text-center">
-                    <h5>Follow Us</h5>
-                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
 
 
 

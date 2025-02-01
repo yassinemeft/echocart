@@ -5,121 +5,193 @@
 <!-- Custom styles -->
 @section('styles')
 <style>
-        /* Reset global styles */
-        body {
-            background: #f8f9fa;
-            background-size: cover;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    /* Global Styles */
+    body {
+        background: #f4f7f6;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-        /* Container styles */
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
+    /* Container */
+    .container {
+        max-width: 1300px;
+        margin: auto;
+        padding: 15px;
+        display: flex;
+        gap: 20px;
+    }
 
-        /* Page title styles */
-        .text-center {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #343a40;
-            margin-bottom: 20px;
-        }
+    /* Sidebar Styles */
+    .sidebar {
+        width: 200px;
+        height: 10%;
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Grid layout for products */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-            gap: 15px; /* Réduction de l'espace entre les cartes */
-        }
+    .filter-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
 
-        /* Card styles */
-        .card {
-            background: rgba(131, 106, 106, 0.62);
-            border-radius: 10px;
-            border: 0px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
+    .filter-group {
+        margin-bottom: 20px;
+    }
 
-        /* Hover effect for cards */
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
+    .filter-group label {
+        font-size: 0.9rem;
+        color: #333;
+        font-weight: 500;
+    }
 
-        /* Image styles */
-        .card-img {
-            width: 100%;
-            height: 150px; /* Réduction de la hauteur des images */
-            object-fit: cover;
-        }
+    .filter-group input,
+    .filter-group select {
+        width: 100%;
+        margin-top: 5px;
+    }
 
-        /* Card content styles */
-        .card-body {
-            padding: 10px; /* Moins d'espace dans le contenu */
-        }
+    .filter-btn {
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
 
-        .card-body h3 {
-            font-size: 1rem; /* Réduction de la taille du texte */
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #343a40;
-        }
+    .filter-btn:hover {
+        background: #219150;
+    }
 
-        .card-body p {
-            color: rgb(0, 0, 0);
-            margin-bottom: 10px;
-        }
+    /* Product Grid */
+    .products-section {
+        flex: 1;
+    }
 
-        
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
 
-        /* Make entire card a link */
-        .card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
+    /* Product Card */
+    .card {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+
+    /* Card Hover Effect */
+    .card:hover {
+        transform: scale(1.04);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Product Image */
+    .card-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    /* Card Content */
+    .card-body {
+        padding: 10px;
+        height: 90px;
+    }
+
+    .card-body h3 {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 6px;
+    }
+
+    .product-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    .price {
+        font-weight: bold;
+        color: #27ae60;
+    }
+
+    .rating {
+        color: #f1c40f;
+    }
+
+</style>
 @endsection
 
 @section('content')
-    <!-- Main container -->
-    <div class="container">
-        <!-- Page title -->
-        <h1 class="text-center" style="font-weight: bold;">Explore Our Collection</h1>
+<div class="container">
+    <!-- Sidebar Filter -->
+    <div class="sidebar sticky-top" style="top: 130px;">
+        <h3 class="filter-title">Sort By</h3>
+        <form action="{{ route('product.search') }}" method="GET">
+            <div class="filter-group">
+                <select name="sort" id="sort" class="form-control">
+                    <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
+                    <option value="price-low" {{ request('sort') == 'price-low' ? 'selected' : '' }}>Price: Low to High</option>
+                    <option value="price-high" {{ request('sort') == 'price-high' ? 'selected' : '' }}>Price: High to Low</option>
+                    <option value="best-rating" {{ request('sort') == 'best-rating' ? 'selected' : '' }}>Best Rating</option>
+                </select>
+            </div>
+            <button class="filter-btn" type="submit">Apply</button>
+        </form>
+    </div>
 
-        <!-- Grid layout for products -->
+
+    <!-- Products Section -->
+    <section class="products-section">
         <div class="grid">
-            <!-- Product cards -->
-            @foreach ($products as $product) 
-                <a href="#" class="card-link">
-                    <div class="card">
-                        <!-- Product image -->
-                        <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
-                        <!-- Product details -->
-                        <div class="card-body">
-                           <h3>{{ $product->title }} - {{ $product->price }}</h3>
-                        </div>
+            @foreach ($products as $product)
+            <div class="card">
+                    <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none;">
+                    <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
+                    <div class="card-body">
+                        <h3>{{ Str::limit($product->title, 40) }}</h3>
+                        <p class="product-meta">
+                            <span class="price">${{ number_format($product->price, 2) }}</span>
+                            <span class="rating">⭐{{ $product->stars }}</span>
+                        </p>
                     </div>
                 </a>
+            </div>
             @endforeach
+            <!-- Pagination -->
         </div>
-    </div>
+    </section>
 
-    @if($products->isEmpty())
-        <p>No products found matching your search.</p>
-    @endif
 
-    <!-- Pagination links -->
-    <div class="text-center">
-    {{ $products->links() }}
-    </div>
+    <!-- Products Section -->
+    
+    
+</div>
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-5 fs-3">
+    {{ $products->appends(request()->query())->links() }}    
+</div>
+
+     @endsection
+
+@section('scripts')
+
 @endsection
-
