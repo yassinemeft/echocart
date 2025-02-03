@@ -12,6 +12,53 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Custom styles -->
+    <style>
+        /* Style général du footer */
+        footer {
+            background-color: #343a40; /* Fond sombre */
+            color: white;
+            padding: 20px 0;
+        }
+
+        /* Fixer les titres */
+        footer h5 {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        /* Liens et icônes */
+        footer a, footer i {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        /* Quick Links Hover */
+        footer .list-unstyled li a:hover {
+            color:rgb(0, 0, 0); /* Orange */
+            padding-left: 5px;
+        }
+
+        /* Quick Links en orange après hover */
+        footer .list-unstyled li a:hover {
+            color:rgb(0, 0, 0) !important;
+        }
+
+        /* Hover sur la classe "text-white me-3" */
+        footer .text-white.me-3 i:hover {
+            color:rgb(0, 0, 0); /* Orange */
+            padding-left: 5px;
+        }
+
+        /* Désactiver hover sur "About EchoCart" */
+        footer p {
+            transition: none;
+        }
+    </style>
     @yield('styles')
 </head>
 <body>
@@ -113,7 +160,7 @@
                     <h5>Follow Us</h5>
                     <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>
