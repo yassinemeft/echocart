@@ -86,3 +86,14 @@ Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->n
 // show profile
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
 
+// edit profile page
+Route::get('/profile_edit', function () {
+    return view('profile_edit');
+})->name('profile_edit');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+});

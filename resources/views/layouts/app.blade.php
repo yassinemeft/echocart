@@ -13,6 +13,7 @@
 
     <!-- Custom styles -->
     <style>
+        
         /* Style général du footer */
         footer {
             background-color: #343a40; /* Fond sombre */
