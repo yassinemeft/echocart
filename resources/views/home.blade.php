@@ -98,9 +98,9 @@
                     <h1 class="display-3 mb-3">Welcome to EchoCart</h1>
                     <h4 class="mb-4">Lorem ipsum dolor amet consectetur adipisicing elit. Quisquam, quod.</h4>
                     <a data-mdb-ripple-init class="btn btn-outline-dark btn-lg m-2" 
-                       href="https://www.youtube.com/watch?v=c9B4TPnak1A" role="button" rel="nofollow" target="_blank">Explore our Products</a>
+                       href="{{route('product.search')}}" role="button" rel="nofollow" target="_blank">Explore our Products</a>
                     <a data-mdb-ripple-init class="btn btn-outline-dark btn-lg m-2" 
-                       href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Learn more</a>
+                       href="#featured" role="button">Learn more</a>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
     </div>
 
     <!-- Featured section -->
-    <div class="container py-5 text-center" id="featured-3">
+    <div class="container py-5 text-center" id="featured">
         <h2 class="display-3 bold">Why Choose EchoCart</h2>
         <div class="d-flex py-4">
             <div class="feature col border-2 p-4 rounded shadow">
