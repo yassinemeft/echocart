@@ -73,6 +73,10 @@
         background-color: #343a40;
         color: #fff;
     }
+    .btn-see {
+        background-color:rgb(225, 237, 0);
+        color: #fff;
+    }
     .btn-buy:hover {
         background-color: #495057;
         color: black;
@@ -168,33 +172,46 @@
 
 @section('content')
 <div class="container">
-    <div class="product-container">
-        <div class="product-image">
-            <a href="#">
-                <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}">
+<div class="product-container">
+    <div class="product-image">
+        <a href="#">
+            <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}">
+        </a>
+    </div>
+    <div class="product-details">
+        <h1>{{ $product->title }}</h1>
+        <div class="d-flex justify-content-evenly my-3">
+            <p class="fs-4"><strong>Price:</strong> ${{ number_format($product->price, 2) }}</p>
+            <p class="rating fs-4">⭐ {{ $product->stars }}</p>
+        </div>
+        <div class="product-actions d-flex align-items-center justify-content-between">
+            <form action="{{ route('cart.add') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{ $product->id }}">
+                <input type="hidden" name="asin" value="{{ $product->asin }}">
+                <input type="hidden" name="title" value="{{ $product->title }}">
+                <input type="hidden" name="price" value="{{ $product->price }}">
+                <div class="mb-2">
+                    <label for="quantity" class="form-label">Quantity :</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
+            </form>
+            <button class="btn-buy w-100">Buy</button>
+            <a href="{{ $product->productURL }}">
+                <button class="btn-see w-100">See in Amazon</button>
             </a>
         </div>
-        <div class="product-details">
-            <h1>{{ $product->title }}</h1>
-            <div class="d-flex justify-content-evenly my-3">
-                <p class="fs-4"><strong>Price:</strong> ${{ number_format($product->price, 2) }}</p>
-                <p class="rating fs-4">⭐ {{ $product->stars }}</p>
-            </div>
-                <div class="product-actions d-flex align-items-center justify-content-between">
-                    <label for="quantity" style="width: 240px">Enter quantity:</label>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1">
-                    <button class="btn-buy w-100">Buy</button>
-                    <button class="btn-secondary" style="width: 240px">Add to Cart</button>
-                </div>
-        </div>
     </div>
+</div>
+
 
     <section class="related-products my-5">
     <h2>Related Products</h2>
         <div class="grid">
         @foreach ($relatedProducts as $related)
             <div class="card">
-                    <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none;">
+                    <a href="{{ route('products.show', $related->id) }}" style="text-decoration: none;">
                     <img src="{{ $related->imgUrl }}" alt="{{ $related->title }}" class="card-img">
                     <div class="card-body">
                         <h3>{{ Str::limit($related->title, 40) }}</h3>
