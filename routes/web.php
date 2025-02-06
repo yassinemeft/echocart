@@ -58,6 +58,7 @@ Route::get('/about us', function () {
 
 // Home page after login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 // Contact form
