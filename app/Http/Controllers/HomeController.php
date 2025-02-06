@@ -26,9 +26,10 @@ class HomeController extends Controller
     {
         // Fetch 4 random product images
         $products = Product::select('imgUrl')->inRandomOrder()->limit(4)->get();
+        $allProducts = Product::select('id', 'title', 'imgUrl', 'price', 'stars')->inRandomOrder()->limit(28)->get();
 
         // Pass data to the view
-        return view('home', compact('products'));
+        return view('home', compact('products', 'allProducts'));
     }
 }
 
