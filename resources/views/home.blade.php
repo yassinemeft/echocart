@@ -72,6 +72,69 @@
                 }
             }
         }
+        /* Product Grid */
+    .products-section {
+        flex: 1;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+    .product-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    .price {
+        font-weight: bold;
+        color: #27ae60;
+    }
+
+    .rating {
+        color: #f1c40f;
+    }
+    /* Product Card */
+    .card {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+
+    /* Card Hover Effect */
+    .card:hover {
+        transform: scale(1.04);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Product Image */
+    .card-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    /* Card Content */
+    #card-body {
+        padding: 10px;
+        height: 90px;
+    }
+
+    .card-body h3 {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 6px;
+    }
     </style>
 
 
@@ -119,10 +182,10 @@
         </div>
         <div class="py-5 mt-5">
             <div class="row row-cols-md-2 g-4">
-                @foreach ($products as $product)
+                @foreach ($products as $imgPro)
                     <div class="col">
                         <div class="card h-100 w-100">
-                            <img src="{{ $product->imgUrl }}" class="card-img-top img-fluid" alt="Product Image">
+                            <img src="{{ $imgPro->imgUrl }}" class="card-img-top img-fluid" alt="Product Image">
                         </div>
                     </div>
                 @endforeach
@@ -170,11 +233,11 @@
     </div>
 
     <!--line-->
-    <div class="border-bottom my-3"></div>
+    <div class="border-bottom mt-3"></div>
     <!--line-->
 
     <!-- Categories section -->
-    <div class="container-fluid my-5">
+    <div class="container-fluid  py-5 bg-light">
         <h2 class="text-center display-3 bold">Explore by Categories</h2>
         <div class="d-flex justify-content-center flex-wrap g-4">
             @php
@@ -281,7 +344,38 @@
             <span class="col"></span>
         </div>
     </div>
+
+
+    <!--line-->
+        <div class="border-bottom mb-3"></div>
+    <!--line-->
+
     
+
+    <!-- Products Section -->
+     <div class="border-bottom my-5 mx-5">
+         <section class="products-section">
+             <h2 class="text-center display-3 bold">Discover Our Products</h2>
+             <div class="grid">
+                 @foreach ($allProducts as $product)
+                 <div class="card">
+                     <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none;">
+                         <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
+                         <div class="card-body" id="card-body">
+                             <h3>{{ Str::limit($product->title, 40) }}</h3>
+                        <p class="product-meta">
+                            <span class="price">${{ number_format($product->price, 2) }}</span>
+                            <span class="rating">⭐{{ $product->stars }}</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </section>
+</div>
+    <!-- Products Section Ends -->
+
 
     <!-- Contact Us Section -->
 <!-- Contact Us Section -->
