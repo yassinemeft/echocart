@@ -355,7 +355,7 @@
     <!-- Products Section -->
      <div class="border-bottom my-5 mx-5">
          <section class="products-section">
-             <h2 class="text-center display-3 bold">Discover Our Products</h2>
+             <h2 class="text-center display-3 mb-3 bold">Discover Our Products</h2>
              <div class="grid">
                  @foreach ($allProducts as $product)
                  <div class="card">
