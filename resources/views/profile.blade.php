@@ -129,7 +129,10 @@
 .btn-delete:hover {
     background-color:rgb(235, 62, 79);
 }
-
+.info-value {
+    align-content: center;
+    color: #6c757d;
+}
 </style>
 @endsection
 
@@ -148,32 +151,30 @@
     </div>
 
     <div class="profile-info">
-    <div class="info-row">
-        <span class="info-label">Name:</span>
-        <span class="info-value">{{ Auth::user()->name }}</span>
-        <button class="btn-action">Edit</button>
+        <div class="info-row">
+            <span class="info-label">Name:</span>
+            <span class="info-value">{{ Auth::user()->name }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Email:</span>
+            <span class="info-value">{{ Auth::user()->email }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Password:</span>
+            <span class="info-value">********</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Phone:</span>
+            <span class="info-value">{{ $user->phone }}</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Address:</span>
+            <span class="info-value">{{ $user->address }}</span>
+        </div>
+        <div class="info-row" style="justify-content: center;">
+        <button class="btn-action" href="#">Edit Profile</button>
+        </div>
     </div>
-    <div class="info-row">
-        <span class="info-label">Email:</span>
-        <span class="info-value">{{ Auth::user()->email }}</span>
-        <button class="btn-action">Edit</button>
-    </div>
-    <div class="info-row">
-        <span class="info-label">Password:</span>
-        <span class="info-value">********</span>
-        <button class="btn-action">Change</button>
-    </div>
-    <div class="info-row">
-        <span class="info-label">Phone:</span>
-        <span class="info-value">{{ $user->phone }}</span>
-        <button class="btn-action">Edit</button>
-    </div>
-    <div class="info-row">
-        <span class="info-label">Address:</span>
-        <span class="info-value">{{ $user->address }}</span>
-        <button class="btn-action">Edit</button>
-    </div>
-</div>
 
     <div class="request-history">
         <h2>Request History</h2>
@@ -205,5 +206,6 @@
           </form>
         </div>
     </div>
+</div>
 
 @endsection

@@ -103,6 +103,7 @@ Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->n
 
 
 
+
 // cart routes
 Route::get('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
@@ -112,3 +113,16 @@ Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clea
 //Cart routes update request
 Route::match(['get', 'post'], '/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::match(['get', 'post'], '/cart/add', [CartController::class, 'add'])->name('cart.add');
+
+// edit profile page
+Route::get('/profile_edit', function () {
+    return view('profile_edit');
+})->name('profile_edit');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+});
+
