@@ -141,11 +141,12 @@
     
     <div class="profile-header">
         <div class="profile-image">
-            <img src="{{ asset('/images/profile.jpg') }}" alt="Profile Image">
-            <form action="#" method="POST" enctype="multipart/form-data">
+        <img src="{{ auth()->user()->profile_image }}" alt="Profile Image" class="rounded-circle" width="150">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="file" name="profile_image" id="profile-upload" style="display: none;" onchange="this.form.submit()">
-                <button type="button" class="upload-btn" onclick="document.getElementById('profile-upload').click();">+</button>
+                <label for="profile_image">Profile Image</label>
+                <input type="file" name="profile_image" class="form-control" id="profile-upload">
+                <button type="submit" class="btn upload-btn">+</button>
             </form>
         </div>
     </div>
