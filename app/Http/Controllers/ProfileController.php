@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 
 class ProfileController extends Controller
 {
@@ -42,5 +44,35 @@ class ProfileController extends Controller
 
         return view('profile', compact('user'));
     }
+
+    public function update(Request $request)
+{
+
+    $user = auth()->user();
+
+
+
+    $request->validate([
+        'profile_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    if ($request->hasFile('profile_image')) {
+        // Upload the image to Cloudinary
+        $image = $request->file('profile_image');
+        $uploadedImage = Cloudinary::upload($image->getRealPath(), [
+            'folder' => 'profile_images',
+        ]);
+
+        // Get the URL of the uploaded image
+        $imageUrl = $uploadedImage->getSecurePath();
+
+        // Save the image URL to the user's profile in the database
+        // Update the user's profile image URL in the database
+        $user->profile_image = $imageUrl;
+        $user->save();
+    }
+
+    return redirect()->route('profile.show')->with('success', 'Profile image updated successfully');
+}
 }
 ?>
