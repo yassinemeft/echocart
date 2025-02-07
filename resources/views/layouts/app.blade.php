@@ -69,7 +69,7 @@
         <div class="container-fluid">
             <!-- Brand Logo -->
             <a class="navbar-brand mx-5" href="{{ url('/') }}">
-                <img src="{{ asset('images/echo_logo.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                <img src="{{ asset('images/echo_logo.png') }}" alt="Logo" width="30" height="28" class="d-inline-block align-text-top rounded-circle">
                 EchoCart
             </a>
 
@@ -92,6 +92,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('product.search') }}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.show') }}">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('about') }}">About us</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

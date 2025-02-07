@@ -15,40 +15,58 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
+
+
+
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
+
 
 // Home page
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('home');
+})->name('home');
+
 
 // Home page
 Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+// Authentication routes
+Auth::routes();
+
 // Login and sign up pages
-Route::view('/login', 'login')->name('login');
+Route::view('/login', 'auth/login')->name('login');
 Route::view('/sign', 'sign')->name('sign');
 
-// Payement page
+
+// Payment page
 Route::get('/payment', function () {
     return view('auth/payment');
 })->name('payment');
 
-// Authentication routes
-Auth::routes();
+// Payement page
+Route::get('/about us', function () {
+    return view('about');
+})->name('about');
 
 // Home page after login
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 // Contact form
-
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
-// Product search
-use App\Http\Controllers\ProfileController;
 
+// Product search
 Route::get('/search', [ProductController::class, 'search'])->name('product.search');
 
 
@@ -60,6 +78,9 @@ Route::get('/view_product', function () {
 
 // Product search
 Route::get('/products', [ProductController::class, 'search'])->name('product.search');
+// View product page
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
 
 
 // View create product page
@@ -67,24 +88,31 @@ Route::get('/create_product', function () {
     return view('create_product');
 })->name('create_product');
 
+
 // View profile page
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
 
-
-
-// View product page
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-
-
-
+// show profile
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
 // delete account
 Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->name('account.delete');
 
-// show profile
-Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
+
+
+
+
+
+// cart routes
+Route::get('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::get('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+//Cart routes update request
+Route::match(['get', 'post'], '/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::match(['get', 'post'], '/cart/add', [CartController::class, 'add'])->name('cart.add');
 
 // edit profile page
 Route::get('/profile_edit', function () {
@@ -97,3 +125,4 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 });
+
