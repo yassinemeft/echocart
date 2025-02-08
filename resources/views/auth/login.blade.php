@@ -33,6 +33,7 @@
 
         .btn-custom:hover {
             background-color: #495057;
+            color: black;
         }
         
     </style>

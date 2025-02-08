@@ -124,3 +124,9 @@ Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->
 // delete account
 Route::post('/profile', [ProfileController::class, 'deleteAccount'])->name('account.delete');
 
+
+// Add product page
+Route::get('/add_product', function () {
+    return view('add_product');
+})->name('add_product');
+ 
