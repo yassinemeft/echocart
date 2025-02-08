@@ -94,10 +94,6 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
 
-// show profile
-Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
-// delete account
-Route::delete('/account/delete', [ProfileController::class, 'deleteAccount'])->name('account.delete');
 
 
 
@@ -115,14 +111,16 @@ Route::match(['get', 'post'], '/cart/update/{id}', [CartController::class, 'upda
 Route::match(['get', 'post'], '/cart/add', [CartController::class, 'add'])->name('cart.add');
 
 // edit profile page
-Route::get('/profile_edit', function () {
+Route::get('/profile/edit', function () {
     return view('profile_edit');
-})->name('profile_edit');
+})->name('profile.change');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-});
+Route::post('/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
+Route::post('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
+Route::post('/profile', [ProfileController::class, 'updateImg'])->name('profile.update');
+// show profile
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
+// delete account
+Route::post('/profile', [ProfileController::class, 'deleteAccount'])->name('account.delete');
 
