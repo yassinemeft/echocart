@@ -12,15 +12,20 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 class ProfileController extends Controller
 {
 
+
+/**
+ * Delete the authenticated user's account.
+ *
+ * This method removes the user from the database, invalidates the session,
+ * regenerates the session token, and redirects to the home page with a success message.
+ *
+ * @param \Illuminate\Http\Request $request The HTTP request instance.
+ * @return \Illuminate\Http\RedirectResponse Redirects to the home page.
+ */
+
     public function deleteAccount(Request $request)
     {
         $user = Auth::user();
-
-        try {
-            // Skip deleting the profile image when deleting the account
-            // if ($user->profile_image) {
-            //     Storage::disk('public')->delete($user->profile_image);
-            // }
 
             // Supprimer l'utilisateur de la base de données
             User::destroy($user->id);
@@ -28,12 +33,16 @@ class ProfileController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect('/')->with('success', 'Your account has been deleted successfully.');
-        } catch (\Exception $e) {
-            Log::error('Error deleting account: ' . $e->getMessage());
-            return redirect()->route('profile.show')->with('error', 'An error occurred while deleting your account.');
-        }
+            return redirect('home')->with('success', 'Your account has been deleted successfully.'); 
     }
+
+
+    
+    /**
+     * Display the user's profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show()
     {
         $user = Auth::user();
@@ -45,7 +54,59 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function update(Request $request)
+
+    /**
+     * Edit the authenticated user's profile information.
+     *
+     * This function validates the incoming request data for updating
+     * the user's profile, including name, email, phone, and address.
+     * It ensures the email is unique across users, except for the current user.
+     * If validation passes and the user is found, it updates the user's information
+     * in the database and redirects to the profile page with a success message.
+     * If the user is not found, it redirects back with an error message.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
+    public function editProfile(Request $request)
+    {
+        // Validate incoming data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        // Update user details
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
+    }
+
+
+
+    /**
+     * Update the authenticated user's profile image.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateImg(Request $request)
 {
 
     $user = auth()->user();
