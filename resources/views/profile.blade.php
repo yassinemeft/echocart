@@ -210,11 +210,7 @@
              @csrf
              <button type="submit" class="btn-action btn-logout">Logout</button>
           </form><br>
-        
-          <form id="delete-account-form" action="#" method="POST">
-             @csrf
             <button type="submit" class="btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</button>
-          </form>
         </div>
     </div>
 </div>
@@ -232,7 +228,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form action="{{ route('account.delete') }}" method="GET">
+                <form action="{{ route('account.delete') }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-danger">Yes, Delete</button>
                 </form>
