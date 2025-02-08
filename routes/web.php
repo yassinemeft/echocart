@@ -119,10 +119,15 @@ Route::get('/profile_edit', function () {
     return view('profile_edit');
 })->name('profile_edit');
 
-
+// edit profile page 2
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 });
 
+// Add product page
+Route::get('/add_product', function () {
+    return view('add_product');
+})->name('add_product');
+ 
