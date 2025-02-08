@@ -133,23 +133,34 @@
     align-content: center;
     color: #6c757d;
 }
+
+.alert-success {
+        background-color: #dff0d8;
+        color: #3e8e41;
+        border-color: #d6e9c6;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
 </style>
 @endsection
 
 @section('content')
 <div class="profile-container">
-    
     <div class="profile-header">
-        <div class="profile-image">
-        <img src="{{ auth()->user()->profile_image }}" alt="Profile Image" class="rounded-circle" width="150">
-            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <label for="profile_image">Profile Image</label>
-                <input type="file" name="profile_image" class="form-control" id="profile-upload">
-                <button type="submit" class="btn upload-btn">+</button>
-            </form>
+        <div class="card p-3 profile-image d-flex align-items-center">
+            @if(auth()->user()->profile_image != null)
+                <img src="{{ auth()->user()->profile_image }}" alt="Profile Image" class="rounded-circle" width="150">
+            @endif
+            <label for="profile_image" class="display-5">{{ auth()->user()->name }}</label>
         </div>
     </div>
+
+    @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="profile-info">
         <div class="info-row">
@@ -173,7 +184,7 @@
             <span class="info-value">{{ $user->address }}</span>
         </div>
         <div class="info-row" style="justify-content: center;">
-        <button class="btn-action" href="#">Edit Profile</button>
+        <a class="btn-action" href="{{ route('profile.change') }}">Edit Profile</a>
         </div>
     </div>
 
@@ -200,13 +211,35 @@
              <button type="submit" class="btn-action btn-logout">Logout</button>
           </form><br>
         
-          <form id="delete-account-form" action="{{ route('account.delete') }}" method="POST">
+          <form id="delete-account-form" action="#" method="POST">
              @csrf
-             @method('DELETE')
-            <button type="submit" class="btn-action btn-delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+            <button type="submit" class="btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</button>
           </form>
         </div>
     </div>
 </div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Account Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your account? This action is irreversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{{ route('account.delete') }}" method="GET">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection
