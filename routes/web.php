@@ -118,7 +118,7 @@ Route::get('/profile/edit', function () {
 
 Route::post('/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
 Route::post('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
-Route::post('/profile', [ProfileController::class, 'updateImg'])->name('profile.update');
+Route::post('/profile/update', [ProfileController::class, 'updateImg'])->name('profile.update');
 // show profile
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
 // delete account
