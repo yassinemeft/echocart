@@ -40,18 +40,18 @@
 
         /* Quick Links Hover */
         footer .list-unstyled li a:hover {
-            color:rgb(0, 0, 0); /* Orange */
+            color:orange; /* Orange */
             padding-left: 5px;
         }
 
         /* Quick Links en orange après hover */
         footer .list-unstyled li a:hover {
-            color:rgb(0, 0, 0) !important;
+            color:orange !important;
         }
 
         /* Hover sur la classe "text-white me-3" */
         footer .text-white.me-3 i:hover {
-            color:rgb(0, 0, 0); /* Orange */
+            color:orange; /* Orange */
             padding-left: 5px;
         }
 
@@ -69,8 +69,8 @@
         <div class="container-fluid">
             <!-- Brand Logo -->
             <a class="navbar-brand mx-5" href="{{ url('/') }}">
-                <img src="{{ asset('images/echo_logo.png') }}" alt="Logo" width="30" height="28" class="d-inline-block align-text-top rounded-circle">
-                EchoCart
+                <img src="{{ asset('images/logo ECHOCART.png') }}" alt="Logo" width="60" height="60" class="d-inline-block align-text-top rounded-circle">
+    
             </a>
 
             <!-- Search Form -->
