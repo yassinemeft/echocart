@@ -46,33 +46,50 @@
             color: white;
             border: none; /* Ensure no border on hover */
         }
+        .alert-success {
+            background-color: #dff0d8;
+            color: #3e8e41;
+            border-color: #d6e9c6;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
     </style>
 </head>
 @endsection
 
 @section('content')
     <div class="container-lg">
+
+    @if (session('success'))
+        <div class="alert-success my-5">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
         <h2 class="text-center">Add a Product</h2>
         <div class="product-image">
-            <img src="https://via.placeholder.com/120" alt="Product Image" id="preview">
+            <img  id="preview">
         </div>
         <!-- Product form -->
-        <form action="/products/store" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf <!-- Laravel's CSRF protection -->
             <!-- Product Image Input -->
             <div class="mb-3">
                 <label class="form-label">Product Image</label>
-                <input type="file" class="form-control" name="image" id="imageInput" accept="image/*" required>
+                <input type="file" class="form-control" name="product_image" id="imageInput" accept="image/*" required>
             </div>
             <!-- Product Name Input -->
             <div class="mb-3">
-                <label class="form-label">Product Name</label>
-                <input type="text" class="form-control" name="name" required>
+                <label class="form-label">Product Descriptive Name</label>
+                <input type="text" class="form-control" name="title" required>
             </div>
-            <!-- Product Description Input -->
+            <!-- Product Stars Input -->
             <div class="mb-3">
-                <label class="form-label">Description</label>
-                <textarea class="form-control" name="description" rows="3" required></textarea>
+                <label class="form-label">Stars</label>
+                <input type="number" class="form-control" name="stars" step="1" min="0" max="5" required>
             </div>
             <!-- Product Price Input -->
             <div class="mb-3">
@@ -84,16 +101,10 @@
                 <label class="form-label">Category</label>
                 <select class="form-select" name="category" required>
                     <option value="">Select a category</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Home">Home</option>
-                    <option value="Other">Other</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                    @endforeach
                 </select>
-            </div>
-            <!-- Product Stock Input -->
-            <div class="mb-3">
-                <label class="form-label">Stock</label>
-                <input type="number" class="form-control" name="stock" required>
             </div>
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary w-100">Add Product</button>
