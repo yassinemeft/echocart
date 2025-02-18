@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Pagination\Paginator;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 
 
@@ -75,5 +77,26 @@ class ProductController extends Controller
         return view('view_product', compact('product', 'relatedProducts', 'randomProducts', 'reviews'));
     }
 
+
+    public function storeProduct(Request $request)
+    {
+        
+        $image = $request->file('product_image');
+        $uploadedImage = Cloudinary::upload($image->getRealPath(), [
+            'folder' => 'product_images',
+        ]);
+
+
+        $product = new Product();
+        $product->title = $request->input('title');
+        $product->owner_id = auth()->id();
+        $product->price = $request->input('price');
+        $product->stars = $request->input('stars');
+        $product->category_id = $request->input('category_id');
+        $product->imgUrl = $uploadedImage->getSecurePath();
+        $product->save();
+
+        return redirect()->back()->with('success', 'Product added successfully!');
+    }
 
 }
