@@ -142,6 +142,66 @@
         margin-bottom: 20px;
         border-radius: 5px;
     }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+        /* Product Card */
+        .card {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+
+    /* Card Hover Effect */
+    .card:hover {
+        transform: scale(1.04);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Product Image */
+    .card-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    /* Card Content */
+    .card-body {
+        padding: 10px;
+        height: 90px;
+    }
+
+    .card-body h3 {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 6px;
+    }
+
+    .product-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    .price {
+        font-weight: bold;
+        color: #27ae60;
+    }
+
+    .rating {
+        color: #f1c40f;
+    }
 </style>
 @endsection
 
@@ -177,16 +237,50 @@
         </div>
         <div class="info-row">
             <span class="info-label">Phone:</span>
-            <span class="info-value">{{ $user->phone }}</span>
+            <span class="info-value">{{ Auth::user()->phone }}</span>
         </div>
         <div class="info-row">
             <span class="info-label">Address:</span>
-            <span class="info-value">{{ $user->address }}</span>
+            <span class="info-value">{{ Auth::user()->address }}</span>
         </div>
-        <div class="info-row" style="justify-content: center;">
-        <a class="btn-action" href="{{ route('profile.change') }}">Edit Profile</a>
+        <div class="info-row gap-3" style="justify-content: center;">
+        <a class="btn-action" href="{{ route('profile.change') }}" style="text-decoration: none;">Edit Profile</a>
+        @if (Route::has('password.request'))
+            <a class="btn-action" href="{{ route('password.request') }}" style="text-decoration: none;">
+                {{ __('Reset Your Password') }}
+            </a>
+        @endif
         </div>
     </div>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2>My Products</h2>
+        <div class="grid">
+        @foreach ($products as $product)
+            <div class="card">
+                    <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none;">
+                    <img src="{{ $product->imgUrl }}" alt="{{ $product->title }}" class="card-img">
+                    <div class="card-body">
+                        <h3>{{ Str::limit($product->title, 40) }}</h3>
+                        <p class="product-meta">
+                            <span class="price">${{ number_format($product->price, 2) }}</span>
+                            <span class="rating">⭐{{ $product->stars }}</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-5 fs-3">
+            {{ $products->appends(request()->query())->links() }}    
+        </div>
+        <a class="btn btn-success rounded-pill px-4 py-2" href="{{ route('product.store') }}" style="text-decoration: none; font-weight: bold;">
+            {{ __('Add Product') }}
+        </a>
+    </section>
+    
 
     <div class="request-history">
         <h2>Request History</h2>
