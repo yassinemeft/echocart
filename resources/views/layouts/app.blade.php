@@ -133,6 +133,13 @@
                                 </form>
                             </ul>
                         </li>
+                        <li>
+                        @if(auth()->user()->profile_image != null)
+                        <a href="{{ route('profile.show') }}">
+                        <img src="{{ auth()->user()->profile_image }}" alt="Profile Image" width="35" height="35" class="d-inline-block align-text-top rounded-circle">
+                        </a>
+                        @endif
+                        </li>
                     @endguest
                 </ul>
             </div>
@@ -158,9 +165,9 @@
                 <div class="col-md-4">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Home</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Products</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                        <li><a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="{{ route('product.search') }}" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="{{ route('about') }}" class="text-white text-decoration-none">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 text-center">

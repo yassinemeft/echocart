@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+use App\Models\Product;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 
@@ -51,7 +51,10 @@ class ProfileController extends Controller
             return redirect()->route('login')->with('error', 'Vous devez être connecté pour voir votre profil.');
         }
 
-        return view('profile', compact('user'));
+        $products = Auth::user()->products()->paginate(10);
+
+
+        return view('profile', compact('products'));
     }
 
 
@@ -107,7 +110,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function updateImg(Request $request)
-{
+    {
 
     $user = auth()->user();
 
@@ -134,6 +137,22 @@ class ProfileController extends Controller
     }
 
     return redirect()->route('profile.show')->with('success', 'Profile image updated successfully');
+
+    }
+
+    public function showProducts(Request $request)
+    {
+        $user = Auth::user();
+
+        
+        $products = Auth::user()->products()->paginate(10);
+
+        return view('profile', compact('products'));
+    }
+
+
 }
-}
+
+
+
 ?>

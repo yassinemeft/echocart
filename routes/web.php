@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 
@@ -82,20 +83,10 @@ Route::get('/products', [ProductController::class, 'search'])->name('product.sea
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 
-
-// View create product page
-Route::get('/create_product', function () {
-    return view('create_product');
-})->name('create_product');
-
-
 // View profile page
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
-
-
-
 
 
 
@@ -119,8 +110,8 @@ Route::get('/profile/edit', function () {
 Route::post('/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
 Route::post('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
 Route::post('/profile/update', [ProfileController::class, 'updateImg'])->name('profile.update');
-// show profile
-Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
+// show profile products
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 // delete account
 Route::post('/profile', [ProfileController::class, 'deleteAccount'])->name('account.delete');
 
@@ -128,5 +119,9 @@ Route::post('/profile', [ProfileController::class, 'deleteAccount'])->name('acco
 // Add product page
 Route::get('/add_product', function () {
     return view('add_product');
-})->name('add_product');
+})->name('product.add');
+Route::post('/add_product', [ProductController::class, 'storeProduct'])->name('product.store');
+
+Route::get('/add_product', [CategoryController::class, 'showCategory'])->name('category.show');
+
  
