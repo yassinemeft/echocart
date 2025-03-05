@@ -57,7 +57,7 @@ return [
     'strict' => env('DB_STRICT', true),
     'engine' => null,
     'options' => [
-        PDO::MYSQL_ATTR_SSL_CA => base_path('certs\ca.pem'),
+        PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA', base_path('certs/ca.pem')),
     ],
 ],
 
